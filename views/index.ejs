@@ -2,18 +2,63 @@
 <html>
   <head>
     <title>Story Weave</title>
+    <!-- Link to an external CSS file for styling -->
+    <link rel="stylesheet" href="/styles.css" />
+    <!-- Internal CSS for additional styling -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        background: #fff;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      strong {
+        color: #007bff;
+      }
+      small {
+        color: #666;
+      }
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 15px;
+        background: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      a:hover {
+        background: #0056b3;
+      }
+    </style>
   </head>
   <body>
     <h1>Messages</h1>
     <ul>
       <% messages.forEach((message) => { %>
       <li>
+        <!-- Display the user's name in bold -->
         <strong><%= message.user %></strong>: <%= message.text %>
         <br />
+        <!-- Display the date the message was added in a smaller font -->
         <small><%= message.added.toLocaleString() %></small>
       </li>
       <% }); %>
     </ul>
+    <!-- Link to add a new message -->
     <a href="/new">Add a new message</a>
   </body>
 </html>
