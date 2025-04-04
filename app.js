@@ -1,26 +1,30 @@
-// Import required modules
 const express = require("express");
-const path = require("path");
+const path = require("node:path");
+const indexRouter = require("./routes/indexRouter");
 
-// Create Express application
 const app = express();
 
-// Set up view engine (EJS) and views directory
+// setting up views and the view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// Middleware to parse form data
+// serving static assets
+const assetPath = path.join(__dirname, "public");
+app.use(express.static(assetPath));
+
+// parsing req.body
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from public directory
-app.use(express.static(path.join(__dirname, "public")));
+// mounting router
+app.use("/", indexRouter);
 
-// Import routes
-const messagesRouter = require("./routes/messages");
-app.use("/", messagesRouter); // Use messages router for all routes
+// the error-buck stops with this
+app.use((err, req, res, next) => {
+  res.status(err.statusCode || 500).send(err.message);
+});
 
-// Start the server
-const PORT = process.env.PORT || 3000;
+// server listening
+const PORT = 4000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server is listening at ${PORT}`);
 });
