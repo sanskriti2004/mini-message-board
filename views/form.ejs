@@ -1,19 +1,40 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>New Message</title>
+    <title>Add a new Message</title>
+    <link rel="stylesheet" href="form.css" />
+    <!-- Font link -- Inter, courtesy of Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Add a New Message</h1>
-    <form action="/new" method="POST">
-      <label for="user">Name:</label>
-      <input type="text" id="user" name="user" required />
-      <br />
-      <label for="text">Message:</label>
-      <textarea id="text" name="text" required></textarea>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
-    <a href="/">Back to messages</a>
+    <header>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/new">New Message</a></li>
+      </ul>
+    </header>
+    <main>
+      <form method="POST" action="/new">
+        <div class="form-header">Add a new message</div>
+        <input
+          type="text"
+          name="author"
+          id="author"
+          placeholder="Enter your username"
+        />
+        <textarea
+          name="message"
+          id="message"
+          placeholder="Enter your message"
+          rows="8"
+        ></textarea>
+        <button>Submit</button>
+      </form>
+    </main>
+    <%- include('footer') %>
   </body>
 </html>
